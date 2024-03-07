@@ -23,6 +23,7 @@ jobs:
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
         with:
+          release-branch-name: "main"
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
