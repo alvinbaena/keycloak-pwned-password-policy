@@ -2,8 +2,8 @@ name: Release plugin
 
 on:
   push:
-    tags:
-      - "*" # triggers only if push new tag version, like `0.8.4` or else
+    branches:
+      - master
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
           maven-args: "clean package"
 
       - name: Release
-        uses: qcastel/github-actions-maven-release@TAG_NAME
+        uses: qcastel/github-actions-maven-release@master
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
         with:
