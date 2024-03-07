@@ -6,6 +6,6 @@ from [have i been pwned?](https://haveibeenpwned.com).
 
 ## Messages
 
-This plugin has only one message key: `invalidPasswordBreached`, which can be changed on the realm's localization
-overrides, if on Keycloak >= 24, or by adding / changing the message in
-the `src/main/resources/theme-resources/messages` localization files, if on Keycloak < 24, and recompiling the plugin.
+This plugin has only one message key: `invalidPasswordBreached`, which if you are on a Keycloak with version greater
+than 24.0.0 can be changed on the realm's localization overrides. If on Keycloak < 24.0.0, change the message in
+the `src/main/resources/theme-resources/messages` localization files, and recompile the plugin.
