@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kaiabit.keycloak</groupId>
+    <artifactId>pwned-password-policy</artifactId>
+    <version>24.0.0</version>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <keycloak.version>24.0.0</keycloak.version>
+        <lombok.version>1.18.26</lombok.version>
+        <auto-service.version>1.0.1</auto-service.version>
+    </properties>
+
+    <scm>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>git@github.com:alvinbaena/keycloak-pwned-password-policy.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <artifactId>keycloak-parent</artifactId>
+                <groupId>org.keycloak</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${keycloak.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <artifactId>keycloak-core</artifactId>
+            <groupId>org.keycloak</groupId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <artifactId>keycloak-server-spi-private</artifactId>
+            <groupId>org.keycloak</groupId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <artifactId>keycloak-server-spi</artifactId>
+            <groupId>org.keycloak</groupId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <artifactId>keycloak-services</artifactId>
+            <groupId>org.keycloak</groupId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <artifactId>lombok</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <scope>provided</scope>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>auto-service-annotations</artifactId>
+            <groupId>com.google.auto.service</groupId>
+            <version>${auto-service.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <artifactId>guava</artifactId>
+            <groupId>com.google.guava</groupId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <!--For debugging weird compilation messages-->
+                    <!--<forceJavacCompilerUse>true</forceJavacCompilerUse>-->
+                    <annotationProcessorPaths>
+                        <path>
+                            <artifactId>auto-service</artifactId>
+                            <groupId>com.google.auto.service</groupId>
+                            <version>${auto-service.version}</version>
+                        </path>
+                        <path>
+                            <artifactId>lombok</artifactId>
+                            <groupId>org.projectlombok</groupId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
